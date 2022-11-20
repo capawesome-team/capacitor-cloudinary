@@ -7,12 +7,20 @@ import Capacitor
  */
 @objc(CloudinaryPlugin)
 public class CloudinaryPlugin: CAPPlugin {
-    private let implementation = Cloudinary()
+    public let errorCloudNameMissing = "cloudName must be provided."
+    
+    private var implementation: Cloudinary?
+    
+    override public func load() {
+        implementation = Cloudinary(plugin: self)
+    }
 
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
-        call.resolve([
-            "value": implementation.echo(value)
-        ])
+    @objc func initialize(_ call: CAPPluginCall) {
+        guard let cloudName = call.getString("cloudName") else {
+            call.reject(errorCloudNameMissing)
+            return
+        }
+        implementation?.initialize(cloudName)
+        call.resolve()
     }
 }

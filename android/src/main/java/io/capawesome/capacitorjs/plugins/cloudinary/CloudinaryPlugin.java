@@ -9,7 +9,11 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 @CapacitorPlugin(name = "Cloudinary")
 public class CloudinaryPlugin extends Plugin {
 
-    private Cloudinary implementation = new Cloudinary();
+    private Cloudinary implementation;
+
+    public void load() {
+        implementation = new Cloudinary(this);
+    }
 
     @PluginMethod
     public void echo(PluginCall call) {

@@ -1,8 +1,16 @@
 import Foundation
+import Cloudinary
 
 @objc public class Cloudinary: NSObject {
-    @objc public func echo(_ value: String) -> String {
-        print(value)
-        return value
+    private let plugin: CloudinaryPlugin
+    private var cloudinary: CLDCloudinary?
+    
+    init(plugin: CloudinaryPlugin) {
+        self.plugin = plugin
+    }
+    
+    @objc public func initialize(_ cloudName: String) {
+        let config = CLDConfiguration(cloudName: cloudName, secure: true)
+        self.cloudinary = CLDCloudinary(configuration: config)
     }
 }

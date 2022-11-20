@@ -1,11 +1,22 @@
 package io.capawesome.capacitorjs.plugins.cloudinary;
 
-import android.util.Log;
+import com.cloudinary.android.MediaManager;
+
+import java.util.HashMap;
 
 public class Cloudinary {
 
-    public String echo(String value) {
-        Log.i("Echo", value);
-        return value;
+    private CloudinaryPlugin plugin;
+
+    public Cloudinary(CloudinaryPlugin plugin) {
+        this.plugin = plugin;
+        MediaManager.init(plugin.getContext());
+    }
+
+    public void upload(HashMap options) {
+        String requestId = MediaManager.get().upload("imageFile.jpg")
+                .unsigned(uploadPreset)
+                .options(options)
+                .dispatch();
     }
 }
