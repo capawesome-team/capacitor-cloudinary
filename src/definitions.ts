@@ -7,7 +7,7 @@ export interface CloudinaryPlugin {
    * @since 0.0.1
    */
   initialize(options: InitializeOptions): Promise<void>;
-  uploadRessource(options: UploadRessourceOptions): Promise<void>;
+  uploadResource(options: UploadResourceOptions): Promise<void>;
 }
 
 /**
@@ -22,9 +22,9 @@ export interface InitializeOptions {
   cloudName: string;
 }
 
-export interface UploadRessourceOptions {
+export interface UploadResourceOptions {
   /**
-   * The ressource type to upload.
+   * The resource type to upload.
    *
    * @since 0.0.1
    */
@@ -45,7 +45,15 @@ export interface UploadRessourceOptions {
    */
   uploadPreset: string;
   /**
-   * Assign a unique identifier to the ressource.
+   * The path of the file to upload.
+   *
+   * Only available on Android and iOS.
+   *
+   * @since 0.0.1
+   */
+  path?: string;
+  /**
+   * Assign a unique identifier to the resource.
    *
    * @since 0.0.1
    * @see https://cloudinary.com/documentation/upload_images#public_id

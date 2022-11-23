@@ -3,7 +3,7 @@ import { WebPlugin } from '@capacitor/core';
 import type {
   CloudinaryPlugin,
   InitializeOptions,
-  UploadRessourceOptions,
+  UploadResourceOptions,
 } from './definitions';
 
 export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
@@ -13,7 +13,7 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
     this.cloudName = options.cloudName;
   }
 
-  public async uploadRessource(options: UploadRessourceOptions): Promise<void> {
+  public async uploadResource(options: UploadResourceOptions): Promise<void> {
     if (!options.file) {
       throw new Error('File is required');
     }
@@ -33,7 +33,7 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
 
     for (const chunk of chunks) {
       const { start, end, blob } = chunk;
-      await this.uploadRessourceChunk(
+      await this.uploadResourceChunk(
         options,
         uniqueUploadId,
         start,
@@ -44,8 +44,8 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
     }
   }
 
-  public async uploadRessourceChunk(
-    options: UploadRessourceOptions,
+  public async uploadResourceChunk(
+    options: UploadResourceOptions,
     uniqueUploadId: string,
     start: number,
     end: number,

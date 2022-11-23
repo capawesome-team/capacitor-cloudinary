@@ -8,9 +8,9 @@ import Capacitor
 @objc(CloudinaryPlugin)
 public class CloudinaryPlugin: CAPPlugin {
     public let errorCloudNameMissing = "cloudName must be provided."
-    
+
     private var implementation: Cloudinary?
-    
+
     override public func load() {
         implementation = Cloudinary(plugin: self)
     }

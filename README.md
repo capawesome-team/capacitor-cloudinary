@@ -59,8 +59,8 @@ const initialize = async () => {
   await Cloudinary.initialize({ cloudName: 'my_cloud_name' });
 };
 
-const uploadRessource = async () => {
-  await Cloudinary.uploadRessource({
+const uploadResource = async () => {
+  await Cloudinary.uploadResource({
     resourceType: ResourceType.image,
     uploadPreset: 'my_preset',
     publicId: 'my_public_id',
@@ -73,7 +73,7 @@ const uploadRessource = async () => {
 <docgen-index>
 
 * [`initialize(...)`](#initialize)
-* [`uploadRessource(...)`](#uploadressource)
+* [`uploadResource(...)`](#uploadresource)
 * [Interfaces](#interfaces)
 * [Enums](#enums)
 
@@ -101,15 +101,15 @@ This method must be called once before all other methods.
 --------------------
 
 
-### uploadRessource(...)
+### uploadResource(...)
 
 ```typescript
-uploadRessource(options: UploadRessourceOptions) => Promise<void>
+uploadResource(options: UploadResourceOptions) => Promise<void>
 ```
 
-| Param         | Type                                                                      |
-| ------------- | ------------------------------------------------------------------------- |
-| **`options`** | <code><a href="#uploadressourceoptions">UploadRessourceOptions</a></code> |
+| Param         | Type                                                                    |
+| ------------- | ----------------------------------------------------------------------- |
+| **`options`** | <code><a href="#uploadresourceoptions">UploadResourceOptions</a></code> |
 
 --------------------
 
@@ -124,14 +124,15 @@ uploadRessource(options: UploadRessourceOptions) => Promise<void>
 | **`cloudName`** | <code>string</code> | The cloud name of your app which you can find in the Cloudinary Management Console. | 0.0.1 |
 
 
-#### UploadRessourceOptions
+#### UploadResourceOptions
 
-| Prop               | Type                                                  | Description                                  | Since |
-| ------------------ | ----------------------------------------------------- | -------------------------------------------- | ----- |
-| **`resourceType`** | <code><a href="#resourcetype">ResourceType</a></code> | The ressource type to upload.                | 0.0.1 |
-| **`file`**         | <code>File</code>                                     | The file to upload. Only available on Web.   | 0.0.1 |
-| **`uploadPreset`** | <code>string</code>                                   | The selected upload preset.                  | 0.0.1 |
-| **`publicId`**     | <code>string</code>                                   | Assign a unique identifier to the ressource. | 0.0.1 |
+| Prop               | Type                                                  | Description                                                        | Since |
+| ------------------ | ----------------------------------------------------- | ------------------------------------------------------------------ | ----- |
+| **`resourceType`** | <code><a href="#resourcetype">ResourceType</a></code> | The resource type to upload.                                       | 0.0.1 |
+| **`file`**         | <code>File</code>                                     | The file to upload. Only available on Web.                         | 0.0.1 |
+| **`uploadPreset`** | <code>string</code>                                   | The selected upload preset.                                        | 0.0.1 |
+| **`path`**         | <code>string</code>                                   | The path of the file to upload. Only available on Android and iOS. | 0.0.1 |
+| **`publicId`**     | <code>string</code>                                   | Assign a unique identifier to the resource.                        | 0.0.1 |
 
 
 ### Enums
