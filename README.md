@@ -23,9 +23,9 @@
 
 ## Sponsors
 
-This is an MIT-licensed open source project. 
-It can grow thanks to the support by these awesome people. 
-If you'd like to join them, please read more [here](https://github.com/sponsors/capawesome-team).  
+This is an MIT-licensed open source project.
+It can grow thanks to the support by these awesome people.
+If you'd like to join them, please read more [here](https://github.com/sponsors/capawesome-team).
 
 <!-- sponsors --><!-- sponsors -->
 
@@ -38,19 +38,12 @@ npm install @capawesome/capacitor-cloudinary
 npx cap sync
 ```
 
-### Android 
-
-Add the `CLOUDINARY_URL` meta-data property to the `android/app/src/main/AndroidManifest.xml` file, within the `application` tag:
-
-```xml
-<meta-data android:name="CLOUDINARY_URL" android:value="cloudinary://@myCloudName" />
-```
-
-**Note**: Replace `myCloudName` with your cloud name.
+### Android
 
 #### Variables
 
 This plugin will use the following project variables (defined in your app’s `variables.gradle` file):
+
 - `$cloudinaryAndroidVersion` version of `com.cloudinary:cloudinary-android` (default: `2.3.0`)
 
 ## Configuration
@@ -60,10 +53,18 @@ No configuration required for this plugin.
 ## Usage
 
 ```typescript
-import { Cloudinary } from '@capawesome/capacitor-cloudinary';
+import { Cloudinary, ResourceType } from '@capawesome/capacitor-cloudinary';
 
-const echo = async () => {
-  await Cloudinary.echo();
+const initialize = async () => {
+  await Cloudinary.initialize({ cloudName: 'my_cloud_name' });
+};
+
+const uploadRessource = async () => {
+  await Cloudinary.uploadRessource({
+    resourceType: ResourceType.image,
+    uploadPreset: 'my_preset',
+    publicId: 'my_public_id',
+  });
 };
 ```
 
@@ -71,10 +72,78 @@ const echo = async () => {
 
 <docgen-index>
 
+* [`initialize(...)`](#initialize)
+* [`uploadRessource(...)`](#uploadressource)
+* [Interfaces](#interfaces)
+* [Enums](#enums)
+
 </docgen-index>
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
+
+### initialize(...)
+
+```typescript
+initialize(options: InitializeOptions) => Promise<void>
+```
+
+Initialize the plugin.
+
+This method must be called once before all other methods.
+
+| Param         | Type                                                            |
+| ------------- | --------------------------------------------------------------- |
+| **`options`** | <code><a href="#initializeoptions">InitializeOptions</a></code> |
+
+**Since:** 0.0.1
+
+--------------------
+
+
+### uploadRessource(...)
+
+```typescript
+uploadRessource(options: UploadRessourceOptions) => Promise<void>
+```
+
+| Param         | Type                                                                      |
+| ------------- | ------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#uploadressourceoptions">UploadRessourceOptions</a></code> |
+
+--------------------
+
+
+### Interfaces
+
+
+#### InitializeOptions
+
+| Prop            | Type                | Description                                                                         | Since |
+| --------------- | ------------------- | ----------------------------------------------------------------------------------- | ----- |
+| **`cloudName`** | <code>string</code> | The cloud name of your app which you can find in the Cloudinary Management Console. | 0.0.1 |
+
+
+#### UploadRessourceOptions
+
+| Prop               | Type                                                  | Description                                  | Since |
+| ------------------ | ----------------------------------------------------- | -------------------------------------------- | ----- |
+| **`resourceType`** | <code><a href="#resourcetype">ResourceType</a></code> | The ressource type to upload.                | 0.0.1 |
+| **`file`**         | <code>File</code>                                     | The file to upload. Only available on Web.   | 0.0.1 |
+| **`uploadPreset`** | <code>string</code>                                   | The selected upload preset.                  | 0.0.1 |
+| **`publicId`**     | <code>string</code>                                   | Assign a unique identifier to the ressource. | 0.0.1 |
+
+
+### Enums
+
+
+#### ResourceType
+
+| Members     | Value                |
+| ----------- | -------------------- |
+| **`image`** | <code>'image'</code> |
+| **`video`** | <code>'video'</code> |
+| **`raw`**   | <code>'raw'</code>   |
 
 </docgen-api>
 
