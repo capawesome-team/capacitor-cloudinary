@@ -11,8 +11,9 @@ import java.util.Map;
 @CapacitorPlugin(name = "Cloudinary")
 public class CloudinaryPlugin extends Plugin {
 
-    public static final String ERROR_CLOUD_NAME_MISSING = "cloudName must be provided.";
     public static final String ERROR_NOT_INITIALIZED = "Plugin is not initialized.";
+    public static final String ERROR_CLOUD_NAME_MISSING = "cloudName must be provided.";
+    public static final String ERROR_PATH_MISSING = "path must be provided.";
 
     private Cloudinary implementation;
     private boolean initialized = false;
@@ -42,17 +43,18 @@ public class CloudinaryPlugin extends Plugin {
         }
         String resourceType = call.getString("resourceType");
         String uploadPreset = call.getString("uploadPreset");
-        String filePath = call.getString("path");
+        String path = call.getString("path");
+        if (path == null) {
+            call.reject(ERROR_PATH_MISSING);
+            return;
+        }
         String publicId = call.getString("publicId");
 
-        HashMap options = new HashMap();
-        options.put("public_id", publicId);
-        options.put("resource_type", resourceType);
-
         implementation.uploadResource(
-            filePath,
+            resourceType,
+            path,
             uploadPreset,
-            options,
+            publicId,
             new UploadResourceResultCallback() {
                 @Override
                 public void success() {

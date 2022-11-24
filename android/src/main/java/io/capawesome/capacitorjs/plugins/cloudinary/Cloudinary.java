@@ -21,11 +21,20 @@ public class Cloudinary {
         MediaManager.init(plugin.getContext(), config);
     }
 
-    public void uploadResource(String filePath, String preset, HashMap options, UploadResourceResultCallback callback) {
+    public void uploadResource(
+        String resourceType,
+        String path,
+        String uploadPreset,
+        String publicId,
+        UploadResourceResultCallback callback
+    ) {
+        HashMap options = new HashMap();
+        options.put("public_id", publicId);
+        options.put("resource_type", resourceType);
         MediaManager
             .get()
-            .upload(filePath)
-            .unsigned(preset)
+            .upload(path)
+            .unsigned(uploadPreset)
             .options(options)
             .callback(
                 new UploadCallback() {

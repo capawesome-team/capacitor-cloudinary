@@ -7,6 +7,9 @@ import type {
 } from './definitions';
 
 export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
+  public static readonly ERROR_NOT_INITIALIZED = 'Plugin is not initialized.';
+  public static readonly ERROR_FILE_MISSING = 'file must be provided.';
+
   private cloudName?: string;
 
   public async initialize(options: InitializeOptions): Promise<void> {
@@ -15,7 +18,7 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
 
   public async uploadResource(options: UploadResourceOptions): Promise<void> {
     if (!options.file) {
-      throw new Error('File is required');
+      throw new Error(CloudinaryWeb.ERROR_FILE_MISSING);
     }
     const uniqueUploadId = this.generateUniqueId();
     const chunkSize = 1024 * 1024 * 10; // 10 Megabytes
@@ -53,7 +56,7 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
     chunk: Blob,
   ): Promise<void> {
     if (!this.cloudName) {
-      throw new Error('Cloudinary is not initialized');
+      throw new Error(CloudinaryWeb.ERROR_NOT_INITIALIZED);
     }
     const formData = new FormData();
     formData.append('file', chunk);
