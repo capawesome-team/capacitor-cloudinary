@@ -36,7 +36,7 @@ export interface UploadResourceOptions {
    *
    * @since 0.0.1
    */
-  file?: File;
+  blob?: Blob;
   /**
    * The selected upload preset.
    *

@@ -8,7 +8,7 @@ import type {
 
 export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
   public static readonly ERROR_NOT_INITIALIZED = 'Plugin is not initialized.';
-  public static readonly ERROR_FILE_MISSING = 'file must be provided.';
+  public static readonly ERROR_FILE_MISSING = 'blob must be provided.';
 
   private cloudName?: string;
 
@@ -17,18 +17,18 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
   }
 
   public async uploadResource(options: UploadResourceOptions): Promise<void> {
-    if (!options.file) {
+    if (!options.blob) {
       throw new Error(CloudinaryWeb.ERROR_FILE_MISSING);
     }
     const uniqueUploadId = this.generateUniqueId();
     const chunkSize = 1024 * 1024 * 10; // 10 Megabytes
-    const totalSize = options.file.size;
+    const totalSize = options.blob.size;
     const chunks: { start: number; end: number; blob: Blob }[] = [];
 
     let start = 0;
     let end = Math.min(chunkSize, totalSize);
     while (start < totalSize) {
-      const blob = options.file.slice(start, end);
+      const blob = options.blob.slice(start, end);
       chunks.push({ start, end, blob });
       start = end;
       end = Math.min(start + chunkSize, totalSize);
@@ -73,7 +73,13 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
           'Content-Range': `bytes ${start}-${end}/${size}`,
         },
       },
-    );
+    ).then(response => {
+      if (!response.ok) {
+        throw new Error(
+          `Request failed with status ${response.status}: ${response.statusText}`,
+        );
+      }
+    });
   }
 
   private generateUniqueId(): string {

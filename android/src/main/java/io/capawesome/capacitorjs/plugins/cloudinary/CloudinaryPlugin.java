@@ -24,6 +24,9 @@ public class CloudinaryPlugin extends Plugin {
 
     @PluginMethod
     public void initialize(PluginCall call) {
+        if (initialized) {
+            return;
+        }
         String cloudName = call.getString("cloudName");
         if (cloudName == null) {
             call.reject(ERROR_CLOUD_NAME_MISSING);

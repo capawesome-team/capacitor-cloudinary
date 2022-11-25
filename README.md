@@ -50,6 +50,10 @@ This plugin will use the following project variables (defined in your app’s `v
 
 No configuration required for this plugin.
 
+## Demo
+
+A working example can be found here: [robingenz/capacitor-plugin-demo](https://github.com/robingenz/capacitor-plugin-demo)
+
 ## Usage
 
 ```typescript
@@ -129,7 +133,7 @@ uploadResource(options: UploadResourceOptions) => Promise<void>
 | Prop               | Type                                                  | Description                                                        | Since |
 | ------------------ | ----------------------------------------------------- | ------------------------------------------------------------------ | ----- |
 | **`resourceType`** | <code><a href="#resourcetype">ResourceType</a></code> | The resource type to upload.                                       | 0.0.1 |
-| **`file`**         | <code>File</code>                                     | The file to upload. Only available on Web.                         | 0.0.1 |
+| **`blob`**         | <code>Blob</code>                                     | The file to upload. Only available on Web.                         | 0.0.1 |
 | **`uploadPreset`** | <code>string</code>                                   | The selected upload preset.                                        | 0.0.1 |
 | **`path`**         | <code>string</code>                                   | The path of the file to upload. Only available on Android and iOS. | 0.0.1 |
 | **`publicId`**     | <code>string</code>                                   | Assign a unique identifier to the resource.                        | 0.0.1 |
