@@ -1,11 +1,62 @@
 package io.capawesome.capacitorjs.plugins.cloudinary;
 
-import android.util.Log;
+import android.net.Uri;
+import com.cloudinary.android.MediaManager;
+import com.cloudinary.android.callback.ErrorInfo;
+import com.cloudinary.android.callback.UploadCallback;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Cloudinary {
 
-    public String echo(String value) {
-        Log.i("Echo", value);
-        return value;
+    private CloudinaryPlugin plugin;
+
+    public Cloudinary(CloudinaryPlugin plugin) {
+        this.plugin = plugin;
+    }
+
+    public void initialize(String cloudName) {
+        HashMap config = new HashMap();
+        config.put("cloud_name", cloudName);
+        config.put("secure", true);
+        MediaManager.init(plugin.getContext(), config);
+    }
+
+    public void uploadResource(
+        String resourceType,
+        String path,
+        String uploadPreset,
+        String publicId,
+        UploadResourceResultCallback callback
+    ) {
+        MediaManager
+            .get()
+            .upload(Uri.parse(path))
+            .unsigned(uploadPreset)
+            .option("public_id", publicId)
+            .option("resource_type", resourceType)
+            .callback(
+                new UploadCallback() {
+                    @Override
+                    public void onStart(String requestId) {}
+
+                    @Override
+                    public void onProgress(String requestId, long bytes, long totalBytes) {}
+
+                    @Override
+                    public void onSuccess(String requestId, Map resultData) {
+                        callback.success();
+                    }
+
+                    @Override
+                    public void onError(String requestId, ErrorInfo error) {
+                        callback.error(error.getDescription());
+                    }
+
+                    @Override
+                    public void onReschedule(String requestId, ErrorInfo error) {}
+                }
+            )
+            .dispatch();
     }
 }

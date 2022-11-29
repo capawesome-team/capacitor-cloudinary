@@ -7,12 +7,58 @@ import Capacitor
  */
 @objc(CloudinaryPlugin)
 public class CloudinaryPlugin: CAPPlugin {
-    private let implementation = Cloudinary()
+    public let errorNotInitialized = "Plugin is not initialized."
+    public let errorFileNotFound = "The file was not found."
+    public let errorCloudNameMissing = "cloudName must be provided."
+    public let errorPathMissing = "path must be provided."
+    public let errorResourceTypeMissing = "resourceType must be provided."
+    public let errorUploadPresetMissing = "uploadPreset must be provided."
+    public let errorPublicIdMissing = "publicId must be provided."
 
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
-        call.resolve([
-            "value": implementation.echo(value)
-        ])
+    private var implementation: Cloudinary?
+    private var initialized = false
+
+    override public func load() {
+        implementation = Cloudinary(plugin: self)
+    }
+
+    @objc func initialize(_ call: CAPPluginCall) {
+        guard let cloudName = call.getString("cloudName") else {
+            call.reject(errorCloudNameMissing)
+            return
+        }
+        implementation?.initialize(cloudName)
+        initialized = true
+        call.resolve()
+    }
+
+    @objc func uploadResource(_ call: CAPPluginCall) {
+        if !initialized {
+            call.reject(errorNotInitialized)
+            return
+        }
+        guard let resourceType = call.getString("resourceType") else {
+            call.reject(errorResourceTypeMissing)
+            return
+        }
+        guard let uploadPreset = call.getString("uploadPreset") else {
+            call.reject(errorUploadPresetMissing)
+            return
+        }
+        guard let path = call.getString("path") else {
+            call.reject(errorPathMissing)
+            return
+        }
+        guard let publicId = call.getString("publicId") else {
+            call.reject(errorPublicIdMissing)
+            return
+        }
+        implementation?.uploadResource(resourceType: resourceType, path: path, uploadPreset: uploadPreset, publicId: publicId, completion: { errorMessage in
+            if let errorMessage = errorMessage {
+                call.reject(errorMessage)
+                return
+            }
+            call.resolve()
+        })
     }
 }
