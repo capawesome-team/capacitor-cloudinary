@@ -138,16 +138,16 @@ Upload a file to Cloudinary.
 
 #### UploadResourceResult
 
-| Prop                   | Type                                                  | Description                                                                        | Since |
-| ---------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------- | ----- |
-| **`assetId`**          | <code>string</code>                                   | The unique asset identifier of the uploaded resource.                              | 0.0.1 |
-| **`bytes`**            | <code>number</code>                                   | The number of bytes of the uploaded resource.                                      | 0.0.1 |
-| **`createdAt`**        | <code>string</code>                                   | The timestamp at which the resource was uploaded.                                  | 0.0.1 |
-| **`format`**           | <code>string</code>                                   | The format of the uploaded resource.                                               | 0.0.1 |
-| **`originalFilename`** | <code>string</code>                                   | The original filename of the uploaded resource. Only available on Android and iOS. | 0.0.1 |
-| **`resourceType`**     | <code><a href="#resourcetype">ResourceType</a></code> | The resource type of the uploaded resource.                                        | 0.0.1 |
-| **`publicId`**         | <code>string</code>                                   | The unique public identifier of the uploaded resource.                             | 0.0.1 |
-| **`url`**              | <code>string</code>                                   | The url of the uploaded resource.                                                  | 0.0.1 |
+| Prop                   | Type                                                  | Description                                                                              | Since |
+| ---------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------- | ----- |
+| **`assetId`**          | <code>string</code>                                   | The unique asset identifier of the uploaded resource. Only available on Android and Web. | 0.0.1 |
+| **`bytes`**            | <code>number</code>                                   | The number of bytes of the uploaded resource. Only available on Android and Web.         | 0.0.1 |
+| **`createdAt`**        | <code>string</code>                                   | The timestamp at which the resource was uploaded.                                        | 0.0.1 |
+| **`format`**           | <code>string</code>                                   | The format of the uploaded resource.                                                     | 0.0.1 |
+| **`originalFilename`** | <code>string</code>                                   | The original filename of the uploaded resource. Only available on Android and iOS.       | 0.0.1 |
+| **`resourceType`**     | <code><a href="#resourcetype">ResourceType</a></code> | The resource type of the uploaded resource.                                              | 0.0.1 |
+| **`publicId`**         | <code>string</code>                                   | The unique public identifier of the uploaded resource.                                   | 0.0.1 |
+| **`url`**              | <code>string</code>                                   | The url of the uploaded resource.                                                        | 0.0.1 |
 
 
 #### UploadResourceOptions

@@ -78,15 +78,19 @@ export interface UploadResourceResult {
   /**
    * The unique asset identifier of the uploaded resource.
    *
-   * @since 0.0.1
-   */
-  assetId: string;
-  /**
-   * The number of bytes of the uploaded resource.
+   * Only available on Android and Web.
    *
    * @since 0.0.1
    */
-  bytes: number;
+  assetId?: string;
+  /**
+   * The number of bytes of the uploaded resource.
+   *
+   * Only available on Android and Web.
+   *
+   * @since 0.0.1
+   */
+  bytes?: number;
   /**
    * The timestamp at which the resource was uploaded.
    *

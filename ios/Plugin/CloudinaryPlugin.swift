@@ -9,11 +9,11 @@ import Capacitor
 public class CloudinaryPlugin: CAPPlugin {
     public let errorNotInitialized = "Plugin is not initialized."
     public let errorFileNotFound = "The file was not found."
+    public let errorUnknown = "An unknown error occurred."
     public let errorCloudNameMissing = "cloudName must be provided."
     public let errorPathMissing = "path must be provided."
     public let errorResourceTypeMissing = "resourceType must be provided."
     public let errorUploadPresetMissing = "uploadPreset must be provided."
-    public let errorPublicIdMissing = "publicId must be provided."
 
     private var implementation: Cloudinary?
     private var initialized = false
@@ -49,16 +49,18 @@ public class CloudinaryPlugin: CAPPlugin {
             call.reject(errorPathMissing)
             return
         }
-        guard let publicId = call.getString("publicId") else {
-            call.reject(errorPublicIdMissing)
-            return
-        }
-        implementation?.uploadResource(resourceType: resourceType, path: path, uploadPreset: uploadPreset, publicId: publicId, completion: { errorMessage in
+        let publicId = call.getString("publicId")
+        implementation?.uploadResource(resourceType: resourceType, path: path, uploadPreset: uploadPreset, publicId: publicId, completion: { resultData, errorMessage in
             if let errorMessage = errorMessage {
                 call.reject(errorMessage)
                 return
             }
-            call.resolve()
+            guard let resultData = resultData else {
+                call.reject(self.errorUnknown)
+                return
+            }
+            let result = CloudinaryHelper.createUploadResourceResult(resultData)
+            call.resolve(result)
         })
     }
 }
