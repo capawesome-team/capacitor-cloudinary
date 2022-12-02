@@ -65,9 +65,10 @@ const initialize = async () => {
 
 const uploadResource = async () => {
   await Cloudinary.uploadResource({
+    path: 'file:///var/mobile/Containers/Data/Application/22A433FD-D82D-4989-8BE6-9FC49DEA20BB/Images/test.png',
+    publicId: 'my_public_id',
     resourceType: ResourceType.image,
     uploadPreset: 'my_preset',
-    publicId: 'my_public_id',
   });
 };
 ```
