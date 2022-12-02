@@ -1,7 +1,9 @@
 package io.capawesome.capacitorjs.plugins.cloudinary;
 
 import android.net.Uri;
+import androidx.annotation.Nullable;
 import com.cloudinary.android.MediaManager;
+import com.cloudinary.android.UploadRequest;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
 import java.util.HashMap;
@@ -26,15 +28,14 @@ public class Cloudinary {
         String resourceType,
         String path,
         String uploadPreset,
-        String publicId,
+        @Nullable String publicId,
         UploadResourceResultCallback callback
     ) {
-        MediaManager
-            .get()
-            .upload(Uri.parse(path))
-            .unsigned(uploadPreset)
-            .option("public_id", publicId)
-            .option("resource_type", resourceType)
+        UploadRequest request = MediaManager.get().upload(Uri.parse(path)).unsigned(uploadPreset).option("resource_type", resourceType);
+        if (publicId != null) {
+            request.option("public_id", publicId);
+        }
+        request
             .callback(
                 new UploadCallback() {
                     @Override
@@ -45,7 +46,7 @@ public class Cloudinary {
 
                     @Override
                     public void onSuccess(String requestId, Map resultData) {
-                        callback.success();
+                        callback.success(resultData);
                     }
 
                     @Override

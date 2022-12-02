@@ -4,6 +4,7 @@ import type {
   CloudinaryPlugin,
   InitializeOptions,
   UploadResourceOptions,
+  UploadResourceResult,
 } from './definitions';
 
 export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
@@ -16,7 +17,9 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
     this.cloudName = options.cloudName;
   }
 
-  public async uploadResource(options: UploadResourceOptions): Promise<void> {
+  public async uploadResource(
+    options: UploadResourceOptions,
+  ): Promise<UploadResourceResult> {
     if (!options.blob) {
       throw new Error(CloudinaryWeb.ERROR_FILE_MISSING);
     }
@@ -33,10 +36,10 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
       start = end;
       end = Math.min(start + chunkSize, totalSize);
     }
-
+    let response: any;
     for (const chunk of chunks) {
       const { start, end, blob } = chunk;
-      await this.uploadResourceChunk(
+      response = await this.uploadResourceChunk(
         options,
         uniqueUploadId,
         start,
@@ -45,6 +48,16 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
         blob,
       );
     }
+    return {
+      assetId: response.asset_id,
+      bytes: response.bytes,
+      createdAt: response.created_at,
+      format: response.format,
+      originalFilename: response.original_filename,
+      resourceType: response.resource_type,
+      publicId: response.public_id,
+      url: response.secure_url,
+    };
   }
 
   public async uploadResourceChunk(
@@ -54,7 +67,7 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
     end: number,
     size: number,
     chunk: Blob,
-  ): Promise<void> {
+  ): Promise<any> {
     if (!this.cloudName) {
       throw new Error(CloudinaryWeb.ERROR_NOT_INITIALIZED);
     }
@@ -62,8 +75,10 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
     formData.append('file', chunk);
     formData.append('upload_preset', options.uploadPreset);
     formData.append('cloud_name', this.cloudName);
-    formData.append('public_id', options.publicId);
-    await fetch(
+    if (options.publicId) {
+      formData.append('public_id', options.publicId);
+    }
+    return fetch(
       `https://api.cloudinary.com/v1_1/${this.cloudName}/${options.resourceType}/upload`,
       {
         method: 'PUT',
@@ -73,12 +88,13 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
           'Content-Range': `bytes ${start}-${end}/${size}`,
         },
       },
-    ).then(response => {
+    ).then(async response => {
       if (!response.ok) {
         throw new Error(
           `Request failed with status ${response.status}: ${response.statusText}`,
         );
       }
+      return response.json();
     });
   }
 

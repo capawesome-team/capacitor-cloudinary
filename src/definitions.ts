@@ -7,7 +7,14 @@ export interface CloudinaryPlugin {
    * @since 0.0.1
    */
   initialize(options: InitializeOptions): Promise<void>;
-  uploadResource(options: UploadResourceOptions): Promise<void>;
+  /**
+   * Upload a file to Cloudinary.
+   *
+   * **Note**: Currently, only unsigned uploads are supported.
+   *
+   * @since 0.0.1
+   */
+  uploadResource(options: UploadResourceOptions): Promise<UploadResourceResult>;
 }
 
 /**
@@ -22,6 +29,9 @@ export interface InitializeOptions {
   cloudName: string;
 }
 
+/**
+ * @since 0.0.1
+ */
 export interface UploadResourceOptions {
   /**
    * The resource type to upload.
@@ -53,16 +63,91 @@ export interface UploadResourceOptions {
    */
   path?: string;
   /**
-   * Assign a unique identifier to the resource.
+   * Assign a unique public identifier to the resource.
    *
    * @since 0.0.1
    * @see https://cloudinary.com/documentation/upload_images#public_id
    */
-  publicId: string;
+  publicId?: string;
 }
 
+/**
+ * @since 0.0.1
+ */
+export interface UploadResourceResult {
+  /**
+   * The unique asset identifier of the uploaded resource.
+   *
+   * Only available on Android and Web.
+   *
+   * @since 0.0.1
+   */
+  assetId?: string;
+  /**
+   * The number of bytes of the uploaded resource.
+   *
+   * Only available on Android and Web.
+   *
+   * @since 0.0.1
+   */
+  bytes?: number;
+  /**
+   * The timestamp at which the resource was uploaded.
+   *
+   * @since 0.0.1
+   * @example '2022-12-02T11:03:17Z'
+   */
+  createdAt: string;
+  /**
+   * The format of the uploaded resource.
+   *
+   * @since 0.0.1
+   * @example 'mp4'
+   */
+  format: string;
+  /**
+   * The original filename of the uploaded resource.
+   *
+   * Only available on Android and iOS.
+   *
+   * @since 0.0.1
+   * @example 'my_video'
+   */
+  originalFilename?: string;
+  /**
+   * The resource type of the uploaded resource.
+   *
+   * @since 0.0.1
+   */
+  resourceType: ResourceType;
+  /**
+   * The unique public identifier of the uploaded resource.
+   *
+   * @since 0.0.1
+   */
+  publicId: string;
+  /**
+   * The url of the uploaded resource.
+   *
+   * @since 0.0.1
+   */
+  url: string;
+}
+
+/**
+ * @since 0.0.1
+ */
 export enum ResourceType {
-  image = 'image',
-  video = 'video',
-  raw = 'raw',
+  /**
+   * @since 0.0.1
+   */
+  Image = 'image',
+  /**
+   * @since 0.0.1
+   */
+  Video = 'video',
+  /**
+   * @since 0.0.1
+   */
+  Raw = 'raw',
 }

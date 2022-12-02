@@ -14,19 +14,24 @@ import Cloudinary
         self.cloudinary = CLDCloudinary(configuration: config)
     }
 
-    @objc public func uploadResource(resourceType: String, path: String, uploadPreset: String, publicId: String, completion: @escaping (String?) -> Void) {
+    @objc public func uploadResource(resourceType: String, path: String, uploadPreset: String, publicId: String?, completion: @escaping (CLDUploadResult?, String?) -> Void) {
         guard let url = self.getFileUrlByPath(path) else {
-            completion(plugin.errorFileNotFound)
+            completion(nil, plugin.errorFileNotFound)
             return
         }
-        let params: CLDUploadRequestParams = CLDUploadRequestParams().setPublicId(publicId)
-        self.cloudinary?.createUploader().upload(url: url, uploadPreset: uploadPreset, params: params, completionHandler: { _, error in
+        let params: CLDUploadRequestParams = CLDUploadRequestParams()
+        if let publicId = publicId {
+            params.setPublicId(publicId)
+        }
+        self.cloudinary?.createUploader().uploadLarge(url: url, uploadPreset: uploadPreset, preprocessChain: CLDImagePreprocessChain()) { (progress) in
+            print(progress.fractionCompleted)
+        } completionHandler: { (resultData, error) in
             if let error = error {
-                completion(error.description)
+                completion(nil, error.description)
                 return
             }
-            completion(nil)
-        })
+            completion(resultData, nil)
+        }
     }
 
     @objc private func getFileUrlByPath(_ path: String) -> URL? {

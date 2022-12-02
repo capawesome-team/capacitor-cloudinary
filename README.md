@@ -108,12 +108,20 @@ This method must be called once before all other methods.
 ### uploadResource(...)
 
 ```typescript
-uploadResource(options: UploadResourceOptions) => Promise<void>
+uploadResource(options: UploadResourceOptions) => Promise<UploadResourceResult>
 ```
+
+Upload a file to Cloudinary.
+
+**Note**: Currently, only unsigned uploads are supported.
 
 | Param         | Type                                                                    |
 | ------------- | ----------------------------------------------------------------------- |
 | **`options`** | <code><a href="#uploadresourceoptions">UploadResourceOptions</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#uploadresourceresult">UploadResourceResult</a>&gt;</code>
+
+**Since:** 0.0.1
 
 --------------------
 
@@ -128,6 +136,20 @@ uploadResource(options: UploadResourceOptions) => Promise<void>
 | **`cloudName`** | <code>string</code> | The cloud name of your app which you can find in the Cloudinary Management Console. | 0.0.1 |
 
 
+#### UploadResourceResult
+
+| Prop                   | Type                                                  | Description                                                                              | Since |
+| ---------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------- | ----- |
+| **`assetId`**          | <code>string</code>                                   | The unique asset identifier of the uploaded resource. Only available on Android and Web. | 0.0.1 |
+| **`bytes`**            | <code>number</code>                                   | The number of bytes of the uploaded resource. Only available on Android and Web.         | 0.0.1 |
+| **`createdAt`**        | <code>string</code>                                   | The timestamp at which the resource was uploaded.                                        | 0.0.1 |
+| **`format`**           | <code>string</code>                                   | The format of the uploaded resource.                                                     | 0.0.1 |
+| **`originalFilename`** | <code>string</code>                                   | The original filename of the uploaded resource. Only available on Android and iOS.       | 0.0.1 |
+| **`resourceType`**     | <code><a href="#resourcetype">ResourceType</a></code> | The resource type of the uploaded resource.                                              | 0.0.1 |
+| **`publicId`**         | <code>string</code>                                   | The unique public identifier of the uploaded resource.                                   | 0.0.1 |
+| **`url`**              | <code>string</code>                                   | The url of the uploaded resource.                                                        | 0.0.1 |
+
+
 #### UploadResourceOptions
 
 | Prop               | Type                                                  | Description                                                        | Since |
@@ -136,7 +158,7 @@ uploadResource(options: UploadResourceOptions) => Promise<void>
 | **`blob`**         | <code>Blob</code>                                     | The file to upload. Only available on Web.                         | 0.0.1 |
 | **`uploadPreset`** | <code>string</code>                                   | The selected upload preset.                                        | 0.0.1 |
 | **`path`**         | <code>string</code>                                   | The path of the file to upload. Only available on Android and iOS. | 0.0.1 |
-| **`publicId`**     | <code>string</code>                                   | Assign a unique identifier to the resource.                        | 0.0.1 |
+| **`publicId`**     | <code>string</code>                                   | Assign a unique public identifier to the resource.                 | 0.0.1 |
 
 
 ### Enums
@@ -144,11 +166,11 @@ uploadResource(options: UploadResourceOptions) => Promise<void>
 
 #### ResourceType
 
-| Members     | Value                |
-| ----------- | -------------------- |
-| **`image`** | <code>'image'</code> |
-| **`video`** | <code>'video'</code> |
-| **`raw`**   | <code>'raw'</code>   |
+| Members     | Value                | Since |
+| ----------- | -------------------- | ----- |
+| **`Image`** | <code>'image'</code> | 0.0.1 |
+| **`Video`** | <code>'video'</code> | 0.0.1 |
+| **`Raw`**   | <code>'raw'</code>   | 0.0.1 |
 
 </docgen-api>
 
