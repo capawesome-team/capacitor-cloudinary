@@ -67,7 +67,7 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
     end: number,
     size: number,
     chunk: Blob,
-  ): Promise<void> {
+  ): Promise<any> {
     if (!this.cloudName) {
       throw new Error(CloudinaryWeb.ERROR_NOT_INITIALIZED);
     }
@@ -78,7 +78,7 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
     if (options.publicId) {
       formData.append('public_id', options.publicId);
     }
-    await fetch(
+    return fetch(
       `https://api.cloudinary.com/v1_1/${this.cloudName}/${options.resourceType}/upload`,
       {
         method: 'PUT',
@@ -89,12 +89,12 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
         },
       },
     ).then(async response => {
-      console.log('chunk', { body: await response.json() });
       if (!response.ok) {
         throw new Error(
           `Request failed with status ${response.status}: ${response.statusText}`,
         );
       }
+      return response.json();
     });
   }
 
