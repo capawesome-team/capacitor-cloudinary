@@ -1,10 +1,10 @@
 package io.capawesome.capacitorjs.plugins.cloudinary;
 
 import com.getcapacitor.JSObject;
-
 import java.util.Map;
 
 public class CloudinaryHelper {
+
     public static JSObject createUploadResourceResult(Map resultData) {
         JSObject result = new JSObject();
         result.put("assetId", resultData.get("asset_id"));
