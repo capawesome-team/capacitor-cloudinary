@@ -14,6 +14,8 @@ public class CloudinaryPlugin extends Plugin {
     public static final String ERROR_NOT_INITIALIZED = "Plugin is not initialized.";
     public static final String ERROR_CLOUD_NAME_MISSING = "cloudName must be provided.";
     public static final String ERROR_PATH_MISSING = "path must be provided.";
+    public static final String ERROR_RESOURCE_TYPE_MISSING = "resourceType must be provided.";
+    public static final String ERROR_UPLOAD_PRESET_MISSING = "uploadPreset must be provided.";
 
     private Cloudinary implementation;
     private boolean initialized = false;
@@ -45,7 +47,15 @@ public class CloudinaryPlugin extends Plugin {
             return;
         }
         String resourceType = call.getString("resourceType");
+        if (resourceType == null) {
+            call.reject(ERROR_RESOURCE_TYPE_MISSING);
+            return;
+        }
         String uploadPreset = call.getString("uploadPreset");
+        if (uploadPreset == null) {
+            call.reject(ERROR_UPLOAD_PRESET_MISSING);
+            return;
+        }
         String path = call.getString("path");
         if (path == null) {
             call.reject(ERROR_PATH_MISSING);
@@ -60,8 +70,9 @@ public class CloudinaryPlugin extends Plugin {
             publicId,
             new UploadResourceResultCallback() {
                 @Override
-                public void success() {
-                    call.resolve();
+                public void success(Map resultData) {
+                    JSObject result = CloudinaryHelper.createUploadResourceResult(resultData);
+                    call.resolve(result);
                 }
 
                 @Override
