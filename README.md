@@ -15,6 +15,15 @@
   <a href="https://github.com/capawesome-team"><img src="https://img.shields.io/badge/part%20of-capawesome-%234f46e5?style=flat-square" /></a>
 </p>
 
+## Features
+
+Capacitor Cloudinary allows you to use the native Cloudinary SDKs to upload files directly from the filesystem without going through the WebView.
+
+- 🔋 Supports Android, iOS and the Web
+- 🍕 Chunk upload of large files
+- ❌ No more out-of-memory issues
+- 📁 Works with the [Capacitor Filesystem](https://capacitorjs.com/docs/apis/filesystem) and [Capacitor File Picker](https://github.com/capawesome-team/capacitor-file-picker)
+
 ## Maintainers
 
 | Maintainer | GitHub                                    | Social                                        |
