@@ -23,7 +23,7 @@ import Cloudinary
         if let publicId = publicId {
             params.setPublicId(publicId)
         }
-        self.cloudinary?.createUploader().uploadLarge(url: url, uploadPreset: uploadPreset, preprocessChain: CLDImagePreprocessChain()) { (progress) in
+        self.cloudinary?.createUploader().uploadLarge(url: url, uploadPreset: uploadPreset, params: params, preprocessChain: CLDImagePreprocessChain()) { (progress) in
             print(progress.fractionCompleted)
         } completionHandler: { (resultData, error) in
             if let error = error {
