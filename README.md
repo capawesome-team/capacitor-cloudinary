@@ -49,6 +49,22 @@ npx cap sync
 
 ### Android
 
+This API requires the following permission be added to your `AndroidManifest.xml` **before** the `application` tag:
+
+```xml
+<uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+```
+
+You also need to add the following receiver **in** the `application` tag in your `AndroidManifest.xml`:
+
+```xml
+<receiver android:name="io.capawesome.capacitorjs.plugins.cloudinary.DownloadBroadcastReceiver" android:exported="true">
+  <intent-filter>
+    <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+  </intent-filter>
+</receiver>
+```
+
 #### Variables
 
 This plugin will use the following project variables (defined in your app’s `variables.gradle` file):
@@ -80,6 +96,13 @@ const uploadResource = async () => {
     uploadPreset: 'my_preset',
   });
 };
+
+const downloadResource = async () => {
+  const { path } = await Cloudinary.downloadResource({
+    url: 'https://res.cloudinary.com/myCloudName/image/upload/v123/123.png',
+  });
+  return path;
+};
 ```
 
 ## API
@@ -88,6 +111,7 @@ const uploadResource = async () => {
 
 * [`initialize(...)`](#initialize)
 * [`uploadResource(...)`](#uploadresource)
+* [`downloadResource(...)`](#downloadresource)
 * [Interfaces](#interfaces)
 * [Enums](#enums)
 
@@ -136,6 +160,31 @@ Upload a file to Cloudinary.
 --------------------
 
 
+### downloadResource(...)
+
+```typescript
+downloadResource(options: DownloadResourceOptions) => Promise<DownloadResourceResult>
+```
+
+Download a file from Cloudinary.
+
+On **Android**, the file will be downloaded to the `Downloads` directory.
+On **iOS**, the file will be downloaded to the temporary directory.
+
+It is recommended to copy the file to a permanent location for
+further processing after downloading.
+
+| Param         | Type                                                                        |
+| ------------- | --------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#downloadresourceoptions">DownloadResourceOptions</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#downloadresourceresult">DownloadResourceResult</a>&gt;</code>
+
+**Since:** 0.0.3
+
+--------------------
+
+
 ### Interfaces
 
 
@@ -169,6 +218,21 @@ Upload a file to Cloudinary.
 | **`uploadPreset`** | <code>string</code>                                   | The selected upload preset.                                        | 0.0.1 |
 | **`path`**         | <code>string</code>                                   | The path of the file to upload. Only available on Android and iOS. | 0.0.1 |
 | **`publicId`**     | <code>string</code>                                   | Assign a unique public identifier to the resource.                 | 0.0.1 |
+
+
+#### DownloadResourceResult
+
+| Prop       | Type                | Description                                                                                              | Since |
+| ---------- | ------------------- | -------------------------------------------------------------------------------------------------------- | ----- |
+| **`path`** | <code>string</code> | The path of the downloaded resource where it is stored on the device. Only available on Android and iOS. | 0.0.3 |
+| **`blob`** | <code>Blob</code>   | The downloaded resource as a blob. Only available on Web.                                                | 0.0.1 |
+
+
+#### DownloadResourceOptions
+
+| Prop      | Type                | Description                          | Since |
+| --------- | ------------------- | ------------------------------------ | ----- |
+| **`url`** | <code>string</code> | The url of the resource to download. | 0.0.3 |
 
 
 ### Enums

@@ -14,6 +14,7 @@ public class CloudinaryPlugin: CAPPlugin {
     public let errorPathMissing = "path must be provided."
     public let errorResourceTypeMissing = "resourceType must be provided."
     public let errorUploadPresetMissing = "uploadPreset must be provided."
+    public let errorUrlMissing = "url must be provided."
 
     private var implementation: Cloudinary?
     private var initialized = false
@@ -61,6 +62,30 @@ public class CloudinaryPlugin: CAPPlugin {
             }
             let result = CloudinaryHelper.createUploadResourceResult(resultData)
             call.resolve(result)
+        })
+    }
+
+    @objc func downloadResource(_ call: CAPPluginCall) {
+        if !initialized {
+            call.reject(errorNotInitialized)
+            return
+        }
+        guard let url = call.getString("url") else {
+            call.reject(errorUrlMissing)
+            return
+        }
+        implementation?.downloadResource(url: url, completion: { path, errorMessage in
+            if let errorMessage = errorMessage {
+                call.reject(errorMessage)
+                return
+            }
+            guard let path = path else {
+                call.reject(self.errorUnknown)
+                return
+            }
+            call.resolve([
+                "path": path
+            ])
         })
     }
 }

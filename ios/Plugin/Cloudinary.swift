@@ -34,6 +34,26 @@ import Cloudinary
         }
     }
 
+    @objc public func downloadResource(url: String, completion: @escaping (String?, String?) -> Void) {
+        let secureUrl = url.replacingOccurrences(of: "http://", with: "https://")
+        self.cloudinary?.createDownloader().fetchAsset(secureUrl) { (progress) in
+            print(progress.fractionCompleted)
+        } completionHandler: { (asset, error) in
+            if let error = error {
+                completion(nil, error.description)
+                return
+            }
+            let fileName = URL(string: url)?.lastPathComponent ?? "unknown"
+            let url = self.saveToTemporaryDirectory(data: asset!, fileName: fileName)
+            guard let url = url else {
+                completion(nil, self.plugin.errorUnknown)
+                return
+            }
+            let path = self.getPathFromUrl(url)
+            completion(path, nil)
+        }
+    }
+
     @objc private func getFileUrlByPath(_ path: String) -> URL? {
         guard let url = URL.init(string: path) else {
             return nil
@@ -43,5 +63,19 @@ import Cloudinary
         } else {
             return nil
         }
+    }
+
+    private func saveToTemporaryDirectory(data: Data, fileName: String) -> URL? {
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
+        do {
+            try data.write(to: url, options: .atomic)
+            return url
+        } catch {
+            return nil
+        }
+    }
+
+    public func getPathFromUrl(_ url: URL) -> String {
+        return url.absoluteString
     }
 }

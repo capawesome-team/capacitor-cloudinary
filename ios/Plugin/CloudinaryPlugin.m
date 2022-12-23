@@ -6,4 +6,5 @@
 CAP_PLUGIN(CloudinaryPlugin, "Cloudinary",
            CAP_PLUGIN_METHOD(initialize, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(uploadResource, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(downloadResource, CAPPluginReturnPromise);
 )

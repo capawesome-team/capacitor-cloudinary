@@ -15,6 +15,20 @@ export interface CloudinaryPlugin {
    * @since 0.0.1
    */
   uploadResource(options: UploadResourceOptions): Promise<UploadResourceResult>;
+  /**
+   * Download a file from Cloudinary.
+   *
+   * On **Android**, the file will be downloaded to the `Downloads` directory.
+   * On **iOS**, the file will be downloaded to the temporary directory.
+   *
+   * It is recommended to copy the file to a permanent location for
+   * further processing after downloading.
+   *
+   * @since 0.0.3
+   */
+  downloadResource(
+    options: DownloadResourceOptions,
+  ): Promise<DownloadResourceResult>;
 }
 
 /**
@@ -132,6 +146,40 @@ export interface UploadResourceResult {
    * @since 0.0.1
    */
   url: string;
+}
+
+/**
+ * @since 0.0.3
+ */
+export interface DownloadResourceOptions {
+  /**
+   * The url of the resource to download.
+   *
+   * @since 0.0.3
+   */
+  url: string;
+}
+
+/**
+ * @since 0.0.3
+ */
+export interface DownloadResourceResult {
+  /**
+   * The path of the downloaded resource where it is stored on the device.
+   *
+   * Only available on Android and iOS.
+   *
+   * @since 0.0.3
+   */
+  path?: string;
+  /**
+   * The downloaded resource as a blob.
+   *
+   * Only available on Web.
+   *
+   * @since 0.0.1
+   */
+  blob?: Blob;
 }
 
 /**

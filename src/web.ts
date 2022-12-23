@@ -2,6 +2,8 @@ import { WebPlugin } from '@capacitor/core';
 
 import type {
   CloudinaryPlugin,
+  DownloadResourceOptions,
+  DownloadResourceResult,
   InitializeOptions,
   UploadResourceOptions,
   UploadResourceResult,
@@ -60,7 +62,16 @@ export class CloudinaryWeb extends WebPlugin implements CloudinaryPlugin {
     };
   }
 
-  public async uploadResourceChunk(
+  public async downloadResource(
+    options: DownloadResourceOptions,
+  ): Promise<DownloadResourceResult> {
+    const blob = await fetch(options.url).then(res => res.blob());
+    return {
+      blob,
+    };
+  }
+
+  private async uploadResourceChunk(
     options: UploadResourceOptions,
     uniqueUploadId: string,
     start: number,
