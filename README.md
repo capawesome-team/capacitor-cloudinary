@@ -49,6 +49,22 @@ npx cap sync
 
 ### Android
 
+This API requires the following permission be added to your `AndroidManifest.xml` **before** the `application` tag:
+
+```xml
+<uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+```
+
+You also need to add the following receiver **in** the `application` tag in your `AndroidManifest.xml`:
+
+```xml
+<receiver android:name="io.capawesome.capacitorjs.plugins.cloudinary.DownloadBroadcastReceiver" android:exported="true">
+  <intent-filter>
+    <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+  </intent-filter>
+</receiver>
+```
+
 #### Variables
 
 This plugin will use the following project variables (defined in your app’s `variables.gradle` file):
@@ -79,6 +95,13 @@ const uploadResource = async () => {
     resourceType: ResourceType.image,
     uploadPreset: 'my_preset',
   });
+};
+
+const downloadResource = async () => {
+  const { path } = await Cloudinary.downloadResource({
+    url: 'https://res.cloudinary.com/myCloudName/image/upload/v123/123.png',
+  });
+  return path;
 };
 ```
 
@@ -144,6 +167,12 @@ downloadResource(options: DownloadResourceOptions) => Promise<DownloadResourceRe
 ```
 
 Download a file from Cloudinary.
+
+On **Android**, the file will be downloaded to the `Downloads` directory.
+On **iOS**, the file will be downloaded to the temporary directory.
+
+It is recommended to copy the file to a permanent location for
+further processing after downloading.
 
 | Param         | Type                                                                        |
 | ------------- | --------------------------------------------------------------------------- |

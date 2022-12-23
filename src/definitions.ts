@@ -18,6 +18,12 @@ export interface CloudinaryPlugin {
   /**
    * Download a file from Cloudinary.
    *
+   * On **Android**, the file will be downloaded to the `Downloads` directory.
+   * On **iOS**, the file will be downloaded to the temporary directory.
+   *
+   * It is recommended to copy the file to a permanent location for
+   * further processing after downloading.
+   *
    * @since 0.0.3
    */
   downloadResource(
