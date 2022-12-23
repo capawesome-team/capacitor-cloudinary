@@ -88,6 +88,7 @@ const uploadResource = async () => {
 
 * [`initialize(...)`](#initialize)
 * [`uploadResource(...)`](#uploadresource)
+* [`downloadResource(...)`](#downloadresource)
 * [Interfaces](#interfaces)
 * [Enums](#enums)
 
@@ -136,6 +137,25 @@ Upload a file to Cloudinary.
 --------------------
 
 
+### downloadResource(...)
+
+```typescript
+downloadResource(options: DownloadResourceOptions) => Promise<DownloadResourceResult>
+```
+
+Download a file from Cloudinary.
+
+| Param         | Type                                                                        |
+| ------------- | --------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#downloadresourceoptions">DownloadResourceOptions</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#downloadresourceresult">DownloadResourceResult</a>&gt;</code>
+
+**Since:** 0.0.3
+
+--------------------
+
+
 ### Interfaces
 
 
@@ -169,6 +189,21 @@ Upload a file to Cloudinary.
 | **`uploadPreset`** | <code>string</code>                                   | The selected upload preset.                                        | 0.0.1 |
 | **`path`**         | <code>string</code>                                   | The path of the file to upload. Only available on Android and iOS. | 0.0.1 |
 | **`publicId`**     | <code>string</code>                                   | Assign a unique public identifier to the resource.                 | 0.0.1 |
+
+
+#### DownloadResourceResult
+
+| Prop       | Type                | Description                                                                                              | Since |
+| ---------- | ------------------- | -------------------------------------------------------------------------------------------------------- | ----- |
+| **`path`** | <code>string</code> | The path of the downloaded resource where it is stored on the device. Only available on Android and iOS. | 0.0.3 |
+| **`blob`** | <code>Blob</code>   | The downloaded resource as a blob. Only available on Web.                                                | 0.0.1 |
+
+
+#### DownloadResourceOptions
+
+| Prop      | Type                | Description                          | Since |
+| --------- | ------------------- | ------------------------------------ | ----- |
+| **`url`** | <code>string</code> | The url of the resource to download. | 0.0.3 |
 
 
 ### Enums

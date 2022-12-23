@@ -15,6 +15,14 @@ export interface CloudinaryPlugin {
    * @since 0.0.1
    */
   uploadResource(options: UploadResourceOptions): Promise<UploadResourceResult>;
+  /**
+   * Download a file from Cloudinary.
+   *
+   * @since 0.0.3
+   */
+  downloadResource(
+    options: DownloadResourceOptions,
+  ): Promise<DownloadResourceResult>;
 }
 
 /**
@@ -132,6 +140,40 @@ export interface UploadResourceResult {
    * @since 0.0.1
    */
   url: string;
+}
+
+/**
+ * @since 0.0.3
+ */
+export interface DownloadResourceOptions {
+  /**
+   * The url of the resource to download.
+   *
+   * @since 0.0.3
+   */
+  url: string;
+}
+
+/**
+ * @since 0.0.3
+ */
+export interface DownloadResourceResult {
+  /**
+   * The path of the downloaded resource where it is stored on the device.
+   *
+   * Only available on Android and iOS.
+   *
+   * @since 0.0.3
+   */
+  path?: string;
+  /**
+   * The downloaded resource as a blob.
+   *
+   * Only available on Web.
+   *
+   * @since 0.0.1
+   */
+  blob?: Blob;
 }
 
 /**
