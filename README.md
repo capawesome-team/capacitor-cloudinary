@@ -248,6 +248,10 @@ further processing after downloading.
 
 </docgen-api>
 
+## Utils
+
+See [docs/utils/README.md](/docs/utils/README.md).
+
 ## Changelog
 
 See [CHANGELOG.md](https://github.com/capawesome-team/capacitor-cloudinary/blob/main/CHANGELOG.md).
