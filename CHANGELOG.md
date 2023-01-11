@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/capawesome-team/capacitor-cloudinary/compare/v0.1.0...v0.1.1) (2023-01-11)
+
+
+### Features
+
+* add methods `uploadResourceAsBlob` and `downloadResourceAsBlob` ([#9](https://github.com/capawesome-team/capacitor-cloudinary/issues/9)) ([e19991e](https://github.com/capawesome-team/capacitor-cloudinary/commit/e19991e323d4793414411f805aac609cfa18cd88))
+
 ## [0.1.0](https://github.com/capawesome-team/capacitor-cloudinary/compare/v0.0.2...v0.1.0) (2022-12-23)
 
 
