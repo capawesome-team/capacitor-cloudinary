@@ -199,3 +199,85 @@ export enum ResourceType {
    */
   Raw = 'raw',
 }
+
+/**
+ * @since 0.1.1
+ */
+export interface ICloudinaryUtils {
+  /**
+   * Upload a file to Cloudinary as a blob.
+   *
+   * @since 0.1.1
+   */
+  uploadResourceAsBlob(
+    options: UploadResourceAsBlobOptions,
+  ): Promise<UploadResourceResult>;
+  /**
+   * Download a file from Cloudinary as a blob.
+   *
+   * @since 0.1.1
+   */
+  downloadResourceAsBlob(
+    options: DownloadResourceAsBlobOptions,
+  ): Promise<DownloadResourceAsBlobResult>;
+}
+
+/**
+ * @since 0.1.1
+ */
+export interface UploadResourceAsBlobOptions {
+  /**
+   * The cloud name of your app which you can find in the Cloudinary Management Console.
+   *
+   * @since 0.1.1
+   */
+  cloudName: string;
+  /**
+   * The resource type to upload.
+   *
+   * @since 0.1.1
+   */
+  resourceType: ResourceType;
+  /**
+   * The file to upload.
+   *
+   * @since 0.1.1
+   */
+  blob: Blob;
+  /**
+   * The selected upload preset.
+   *
+   * @since 0.1.1
+   * @see https://cloudinary.com/documentation/upload_presets
+   */
+  uploadPreset: string;
+  /**
+   * Assign a unique public identifier to the resource.
+   *
+   * @since 0.1.1
+   * @see https://cloudinary.com/documentation/upload_images#public_id
+   */
+  publicId?: string;
+}
+
+/**
+ * @since 0.1.1
+ */
+export type UploadResourceAsBlobResult = UploadResourceResult;
+
+/**
+ * @since 0.1.1
+ */
+export type DownloadResourceAsBlobOptions = DownloadResourceOptions;
+
+/**
+ * @since 0.1.1
+ */
+export interface DownloadResourceAsBlobResult {
+  /**
+   * The downloaded resource as a blob.
+   *
+   * @since 0.1.1
+   */
+  blob: Blob;
+}
