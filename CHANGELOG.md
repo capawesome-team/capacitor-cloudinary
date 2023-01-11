@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/capawesome-team/capacitor-cloudinary/compare/v0.1.1...v0.1.2) (2023-01-11)
+
+
+### Bug Fixes
+
+* **ios:** `resourceType` not applied ([#13](https://github.com/capawesome-team/capacitor-cloudinary/issues/13)) ([684c944](https://github.com/capawesome-team/capacitor-cloudinary/commit/684c94432706bd9a83ba9188037ae005271af4c4))
+
 ### [0.1.1](https://github.com/capawesome-team/capacitor-cloudinary/compare/v0.1.0...v0.1.1) (2023-01-11)
 
 

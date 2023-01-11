@@ -1,6 +1,6 @@
 {
   "name": "@capawesome/capacitor-cloudinary",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Capacitor plugin for integrating with Cloudinary.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
