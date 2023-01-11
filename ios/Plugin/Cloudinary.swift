@@ -20,6 +20,7 @@ import Cloudinary
             return
         }
         let params: CLDUploadRequestParams = CLDUploadRequestParams()
+        params.setResourceType(resourceType)
         if let publicId = publicId {
             params.setPublicId(publicId)
         }
