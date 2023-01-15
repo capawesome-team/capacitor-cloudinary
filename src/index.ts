@@ -7,4 +7,5 @@ const Cloudinary = registerPlugin<CloudinaryPlugin>('Cloudinary', {
 });
 
 export * from './definitions';
+export * from './utils';
 export { Cloudinary };
