@@ -1,19 +1,6 @@
-<p align="center"><br><img src="https://avatars.githubusercontent.com/u/105555861" width="128" height="128" /></p>
-<h3 align="center">Cloudinary</h3>
-<p align="center"><strong><code>@capawesome/capacitor-cloudinary</code></strong></p>
-<p align="center">
-  Unofficial Capacitor plugin for integrating with Cloudinary.[^1]
-</p>
+# @capawesome/capacitor-cloudinary
 
-<p align="center">
-  <img src="https://img.shields.io/maintenance/yes/2023?style=flat-square" />
-  <a href="https://github.com/capawesome-team/capacitor-cloudinary/actions?query=workflow%3A%22CI%22"><img src="https://img.shields.io/github/actions/workflow/status/capawesome-team/capacitor-cloudinary/ci.yml?branch=main&style=flat-square" /></a>
-  <a href="https://www.npmjs.com/package/@capawesome/capacitor-cloudinary"><img src="https://img.shields.io/npm/l/@capawesome/capacitor-cloudinary?style=flat-square" /></a>
-<br>
-  <a href="https://www.npmjs.com/package/@capawesome/capacitor-cloudinary"><img src="https://img.shields.io/npm/dw/@capawesome/capacitor-cloudinary?style=flat-square" /></a>
-  <a href="https://www.npmjs.com/package/@capawesome/capacitor-cloudinary"><img src="https://img.shields.io/npm/v/@capawesome/capacitor-cloudinary?style=flat-square" /></a>
-  <a href="https://github.com/capawesome-team"><img src="https://img.shields.io/badge/part%20of-capawesome-%234f46e5?style=flat-square" /></a>
-</p>
+Unofficial Capacitor plugin for integrating with Cloudinary.[^1]
 
 ## Features
 
