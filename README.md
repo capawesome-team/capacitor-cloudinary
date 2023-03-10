@@ -1,6 +1,6 @@
 # @capawesome/capacitor-cloudinary
 
-Unofficial Capacitor plugin for integrating with Cloudinary.[^1]
+Unofficial Capacitor plugin for [Cloudinary SDK](https://cloudinary.com/documentation/cloudinary_sdks).[^1]
 
 ## Features
 
