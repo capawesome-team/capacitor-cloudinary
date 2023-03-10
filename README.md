@@ -2,7 +2,7 @@
 <h3 align="center">Cloudinary</h3>
 <p align="center"><strong><code>@capawesome/capacitor-cloudinary</code></strong></p>
 <p align="center">
-  Capacitor plugin for integrating with Cloudinary.
+  Unofficial Capacitor plugin for integrating with Cloudinary.[^1]
 </p>
 
 <p align="center">
@@ -259,3 +259,5 @@ See [CHANGELOG.md](https://github.com/capawesome-team/capacitor-cloudinary/blob/
 ## License
 
 See [LICENSE](https://github.com/capawesome-team/capacitor-cloudinary/blob/main/LICENSE).
+
+[^1]: This project is not affiliated with, endorsed by, sponsored by, or approved by Cloudinary Ltd. or any of their affiliates or subsidiaries.
