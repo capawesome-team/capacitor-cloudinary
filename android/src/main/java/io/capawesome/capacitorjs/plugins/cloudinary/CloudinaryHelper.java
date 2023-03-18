@@ -11,10 +11,12 @@ public class CloudinaryHelper {
         result.put("bytes", resultData.get("bytes"));
         result.put("createdAt", resultData.get("created_at"));
         result.put("format", resultData.get("format"));
+        result.put("height", resultData.get("height"));
         result.put("originalFilename", resultData.get("original_filename"));
         result.put("resourceType", resultData.get("resource_type"));
         result.put("publicId", resultData.get("public_id"));
         result.put("url", resultData.get("url"));
+        result.put("width", resultData.get("width"));
         return result;
     }
 }

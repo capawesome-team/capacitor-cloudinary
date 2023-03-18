@@ -8,10 +8,12 @@ public class CloudinaryHelper {
         var result = JSObject()
         result["createdAt"] = resultData.createdAt
         result["format"] = resultData.format
+        result["height"] = resultData.height
         result["originalFilename"] = resultData.originalFilename
         result["resourceType"] = resultData.resourceType
         result["publicId"] = resultData.publicId
         result["url"] = resultData.url
+        result["width"] = resultData.width
         return result
     }
 }

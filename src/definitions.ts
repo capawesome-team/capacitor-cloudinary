@@ -120,6 +120,13 @@ export interface UploadResourceResult {
    */
   format: string;
   /**
+   * The height of the uploaded resource.
+   *
+   * @since 0.1.4
+   * @example 1080
+   */
+  height?: number;
+  /**
    * The original filename of the uploaded resource.
    *
    * Only available on Android and iOS.
@@ -146,6 +153,13 @@ export interface UploadResourceResult {
    * @since 0.0.1
    */
   url: string;
+  /**
+   * The width of the uploaded resource.
+   *
+   * @since 0.1.4
+   * @example 1920
+   */
+  width?: number;
 }
 
 /**
