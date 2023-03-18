@@ -3,6 +3,7 @@ package io.capawesome.capacitorjs.plugins.cloudinary;
 import androidx.annotation.NonNull;
 import com.getcapacitor.Bridge;
 import com.getcapacitor.JSObject;
+import com.getcapacitor.Logger;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginHandle;
@@ -14,6 +15,7 @@ import java.util.Map;
 @CapacitorPlugin(name = "Cloudinary")
 public class CloudinaryPlugin extends Plugin {
 
+    public static final String TAG = "Cloudinary";
     public static final String ERROR_NOT_INITIALIZED = "Plugin is not initialized.";
     public static final String ERROR_CLOUD_NAME_MISSING = "cloudName must be provided.";
     public static final String ERROR_PATH_MISSING = "path must be provided.";
@@ -45,8 +47,9 @@ public class CloudinaryPlugin extends Plugin {
             implementation.initialize(cloudName);
             initialized = true;
             call.resolve();
-        } catch (Exception ex) {
-            call.reject(ex.getMessage());
+        } catch (Exception exception) {
+            call.reject(exception.getMessage());
+            Logger.error(TAG, exception.getMessage(), exception);
         }
     }
 
@@ -92,8 +95,9 @@ public class CloudinaryPlugin extends Plugin {
                     }
                 }
             );
-        } catch (Exception ex) {
-            call.reject(ex.getMessage());
+        } catch (Exception exception) {
+            call.reject(exception.getMessage());
+            Logger.error(TAG, exception.getMessage(), exception);
         }
     }
 
@@ -126,8 +130,9 @@ public class CloudinaryPlugin extends Plugin {
                     }
                 }
             );
-        } catch (Exception ex) {
-            call.reject(ex.getMessage());
+        } catch (Exception exception) {
+            call.reject(exception.getMessage());
+            Logger.error(TAG, exception.getMessage(), exception);
         }
     }
 
