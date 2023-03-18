@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/capawesome-team/capacitor-cloudinary/compare/v0.1.3...v0.1.4) (2023-03-18)
+
+
+### Features
+
+* add `height` and `width` properties ([#16](https://github.com/capawesome-team/capacitor-cloudinary/issues/16)) ([c2a8cfe](https://github.com/capawesome-team/capacitor-cloudinary/commit/c2a8cfe8f9eb29d4093854c096db105a8336a617))
+* **android:** improve error handling ([de7404f](https://github.com/capawesome-team/capacitor-cloudinary/commit/de7404f0df5b563b668f03a2fc92900fa4e22b2f))
+
 ### [0.1.3](https://github.com/capawesome-team/capacitor-cloudinary/compare/v0.1.2...v0.1.3) (2023-01-15)
 
 
