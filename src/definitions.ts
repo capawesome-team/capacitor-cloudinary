@@ -121,7 +121,7 @@ export interface UploadResourceResult {
   format: string;
   /**
    * The height of the uploaded resource.
-   * 
+   *
    * @since 0.1.4
    * @example 1080
    */
@@ -155,7 +155,7 @@ export interface UploadResourceResult {
   url: string;
   /**
    * The width of the uploaded resource.
-   * 
+   *
    * @since 0.1.4
    * @example 1920
    */
