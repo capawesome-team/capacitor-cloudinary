@@ -41,10 +41,12 @@ export class CloudinaryUtils implements ICloudinaryUtils {
       bytes: response.bytes,
       createdAt: response.created_at,
       format: response.format,
+      height: response.height,
       originalFilename: response.original_filename,
       resourceType: response.resource_type,
       publicId: response.public_id,
       url: response.secure_url,
+      width: response.width,
     };
   }
 
