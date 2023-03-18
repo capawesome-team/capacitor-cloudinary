@@ -10,7 +10,6 @@ public class CloudinaryHelper {
         result["format"] = resultData.format
         result["width"] = resultData.width
         result["height"] = resultData.height
-        result["bytes"] = resultData.bytes
         result["originalFilename"] = resultData.originalFilename
         result["resourceType"] = resultData.resourceType
         result["publicId"] = resultData.publicId
