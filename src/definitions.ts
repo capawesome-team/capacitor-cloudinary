@@ -114,7 +114,7 @@ export interface UploadResourceResult {
   createdAt: string;
   /**
    * The duration of the uploaded resource in seconds.
-   * 
+   *
    * @since 0.1.5
    * @example 13.4134
    */
