@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/capawesome-team/capacitor-cloudinary/compare/v0.1.4...v0.1.5) (2023-03-19)
+
+
+### Features
+
+* add `duration` property ([#19](https://github.com/capawesome-team/capacitor-cloudinary/issues/19)) ([1161107](https://github.com/capawesome-team/capacitor-cloudinary/commit/1161107bb000028c7f1fae3ae16a4ef250d95e33))
+
 ### [0.1.4](https://github.com/capawesome-team/capacitor-cloudinary/compare/v0.1.3...v0.1.4) (2023-03-18)
 
 
