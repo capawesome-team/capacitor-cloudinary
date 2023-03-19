@@ -10,6 +10,7 @@ public class CloudinaryHelper {
         result.put("assetId", resultData.get("asset_id"));
         result.put("bytes", resultData.get("bytes"));
         result.put("createdAt", resultData.get("created_at"));
+        result.put("duration", resultData.get("duration"));
         result.put("format", resultData.get("format"));
         result.put("height", resultData.get("height"));
         result.put("originalFilename", resultData.get("original_filename"));
