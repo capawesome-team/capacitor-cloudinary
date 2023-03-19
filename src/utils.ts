@@ -40,6 +40,7 @@ export class CloudinaryUtils implements ICloudinaryUtils {
       assetId: response.asset_id,
       bytes: response.bytes,
       createdAt: response.created_at,
+      duration: response.duration,
       format: response.format,
       height: response.height,
       originalFilename: response.original_filename,
