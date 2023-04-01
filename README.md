@@ -1,3 +1,9 @@
+## ⚠️ Deprecated repository
+
+**This project has been moved to the following monorepo: [capawesome-team/capacitor-plugins](https://github.com/capawesome-team/capacitor-plugins).**
+
+-----
+
 # @capawesome/capacitor-cloudinary
 
 Unofficial Capacitor plugin for [Cloudinary SDK](https://cloudinary.com/documentation/cloudinary_sdks).[^1]
